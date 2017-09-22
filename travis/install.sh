@@ -19,7 +19,7 @@ sudo rm -rf /var/lib/postgresql
 
 # Add PPA's'
 # ------------------------------------------------------------------------------
-if [ "$POSTGIS_VERSION" == "2.0" ] || [ "$POSTGIS_VERSION" == "2.1" ] || [ "$POSTGIS_VERSION" == "2.2" ]; then
+if [ "$POSTGIS_VERSION" != "1.5" ]; then
 	sudo apt-add-repository -y ppa:ubuntugis/ppa
 fi
 
@@ -53,13 +53,19 @@ fi
 
 if [ "$POSTGIS_VERSION" == "2.1" ]; then
 	sudo apt-get install -y -qq libpoppler-dev libarmadillo-dev libepsilon-dev liblzma-dev libxml2-dev
-	RELEASE="2.1.8"
+	RELEASE="2.1.9"
 	wget --quiet -O - http://download.osgeo.org/postgis/source/postgis-${RELEASE}.tar.gz | tar xzf -
 fi
 
 if [ "$POSTGIS_VERSION" == "2.2" ]; then
 	sudo apt-get install -y -qq libpoppler-dev libarmadillo-dev libepsilon-dev liblzma-dev libxml2-dev
-	RELEASE="2.2.2"
+	RELEASE="2.2.5"
+	wget --quiet -O - http://download.osgeo.org/postgis/source/postgis-${RELEASE}.tar.gz | tar xzf -
+fi
+
+if [ "$POSTGIS_VERSION" == "2.3" ]; then
+	sudo apt-get install -y -qq libpoppler-dev libarmadillo-dev libepsilon-dev liblzma-dev libxml2-dev
+	RELEASE="2.3.3"
 	wget --quiet -O - http://download.osgeo.org/postgis/source/postgis-${RELEASE}.tar.gz | tar xzf -
 fi
 
